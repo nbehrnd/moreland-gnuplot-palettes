@@ -1,0 +1,84 @@
+# checksum_moreland_csv.txt
+# date:  2019-11-29 (YYYY-MM-DD)
+#
+#
+# This file lists the md5 checksums of color palette data as provided
+# by Kenneth Moreland which were used successfully in this project.
+# They were fetched from the corresponding github account,
+#
+# https://github.com/kennethmoreland-com/kennethmoreland-com.github.io
+#
+# pristinely on Friday, 2019-11-29 (YYYY-MM-DD) and reflect the last
+# commit by him either 4 years ago (bent-cool-warm, black-body, 
+# extended-black-body, extended-kindlmann, kindlman), or from last year
+# (magma, plasma, viridis).  At present, smooth-cool-warm (last commit
+# 4 years ago) and inferno (last commit last year) are not considered
+# here; their conversion with csv2plt.py leads to RGB tuples exceeding
+# the permitted interval of [0...1].
+
+b2a9ed762685d45c154cdda1a974178c  bent-cool-warm-table-float-0008.csv
+231601a66154b3971f20c67dda85ec04  bent-cool-warm-table-float-0016.csv
+51d62009e266b4f7dbd3335ebede0dfc  bent-cool-warm-table-float-0032.csv
+f31b220283836b3ea61de2a5e586c807  bent-cool-warm-table-float-0064.csv
+9d3571dcd5152675860b83fec19b9923  bent-cool-warm-table-float-0128.csv
+34fb6c98f6eee8da15f186d16320a972  bent-cool-warm-table-float-0256.csv
+21c374099b9e1c77297364f0f9dd559f  bent-cool-warm-table-float-0512.csv
+5d5bc9a5e5f93a2030ded76a5abc51dc  bent-cool-warm-table-float-1024.csv
+c2e385f5bace463f2ce85e2585ef5ccf  black-body-table-float-0008.csv
+1cfe26ea77c5ae0f6677e4c724f630b1  black-body-table-float-0016.csv
+81bb680ea52b99d4bb348a3edba8dcb3  black-body-table-float-0032.csv
+f23e3b05378ab182e4ded23db0e17718  black-body-table-float-0064.csv
+1f4cf1c090c372c5ab340446e123a28b  black-body-table-float-0128.csv
+06fcafc19c672842b76fe73293fed84f  black-body-table-float-0256.csv
+74de5e9fe77cb21b82e19af3614e6e5c  black-body-table-float-0512.csv
+0dac6958e9b2eac812f5478de67d4736  black-body-table-float-1024.csv
+58aefb6596e6f51f2edd0363b9496be9  extended-black-body-table-float-0008.csv
+754d58384ec330b2125ea2497554f75f  extended-black-body-table-float-0016.csv
+4f08d5b557780cc401429eb573784317  extended-black-body-table-float-0032.csv
+9ef2654205b6d4004fde270ee119bccc  extended-black-body-table-float-0064.csv
+64225e941463b7dbb5020b401099b00a  extended-black-body-table-float-0128.csv
+fb7a6db03cbff814f957f75b30d67e6f  extended-black-body-table-float-0256.csv
+b191ed74af592f61d89d932360cf279e  extended-black-body-table-float-0512.csv
+d0b59ad27871e155fc602428fb59962e  extended-black-body-table-float-1024.csv
+3f0e990cb338ac567096d28e2b279421  extended-kindlmann-table-float-0008.csv
+7fab6292821bb7ff3a04f610f29dc535  extended-kindlmann-table-float-0016.csv
+0f81bae1785c3989834fea81e2ea1500  extended-kindlmann-table-float-0032.csv
+78480fb45bcae2f72cdac47fd0c2f547  extended-kindlmann-table-float-0064.csv
+ea8854ab363215a78b94aa7163dd00f7  extended-kindlmann-table-float-0128.csv
+6412fe541a27efb57ca68347f59d8495  extended-kindlmann-table-float-0256.csv
+e31449c22257a663c054a951ca6d42ed  extended-kindlmann-table-float-0512.csv
+5732c79f4d46f111960351ee4473b4c2  extended-kindlmann-table-float-1024.csv
+2c63261f0160e7978d93d5d836ceb5fe  kindlmann-table-float-0008.csv
+ade261d1cb9ddb55cb22ddc200ce77b8  kindlmann-table-float-0016.csv
+4b3e5a705b1ad2fbe82e7c2edcfd893a  kindlmann-table-float-0032.csv
+09da0b63fa4840e33ffe76b1d7c18171  kindlmann-table-float-0064.csv
+f51e8dd9013608e556c66085b7706a19  kindlmann-table-float-0128.csv
+0860ec6e6b1d5a0904a51b92331b5143  kindlmann-table-float-0256.csv
+a78929c0c63e7ed626154b4432a327f0  kindlmann-table-float-0512.csv
+82b415d927be3b72802219912eaac2af  kindlmann-table-float-1024.csv
+542471b6c2eddc3ab9828c7b1a55530e  magma-table-float-0008.csv
+c338a0dee0995eaa1dd7753a7cc07ac6  magma-table-float-0016.csv
+319b6dcc410d87abe76500714d6762d7  magma-table-float-0032.csv
+530a2732d7a3e8a3619c400ea11370dc  magma-table-float-0064.csv
+1cb73e743e594027fcb46f1e432b6bee  magma-table-float-0128.csv
+f90c9bac47bca03bf8da15530c2f208c  magma-table-float-0256.csv
+4e3e356c4686330054f8813fbc05607e  magma-table-float-0512.csv
+46c5fa70f00530805a1f750d88d5d825  magma-table-float-1024.csv
+7751c01d9f823a13c79f150da7d1f953  plasma-table-float-0008.csv
+10a52ff37aed6bcdf52eae24d1d1ef31  plasma-table-float-0016.csv
+0814e96ff563d3b576be5a5d3c62e9e9  plasma-table-float-0032.csv
+947f9b9ead73379bb504d284e6f7a69c  plasma-table-float-0064.csv
+98cb3966f5016fa2ccdc2e59e4d3f6a5  plasma-table-float-0128.csv
+dcf326f5ee38f97d703ae54b499a549d  plasma-table-float-0256.csv
+97b1c6209fc060e5757577ce5df34608  plasma-table-float-0512.csv
+152642eda0ae03d92d056b025daad675  plasma-table-float-1024.csv
+07e728a928d19925dae9cc8ec9df7b10  viridis-table-float-0008.csv
+9c035d633273e09e3cddf8438a9fd4de  viridis-table-float-0016.csv
+beabd0d820381fc655f6d9ba04180f9c  viridis-table-float-0032.csv
+82cdbb8750cd95f02afa928c2f75a76a  viridis-table-float-0064.csv
+e671837508b385d8ee456737d16533f7  viridis-table-float-0128.csv
+91af68886f9c2625e837e29acd5622b8  viridis-table-float-0256.csv
+0e2147daf25417bcb000a12e0a5404f2  viridis-table-float-0512.csv
+e438c589f2bc451f581a2069a344f022  viridis-table-float-1024.csv
+
+# END

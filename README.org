@@ -1,0 +1,275 @@
+
+#+OPTIONS: toc:nil
+
+#+LATEX_CLASS:    koma-article  
+#+LATEX_HEADER:   \usepackage[a4paper]{geometry}
+#+LATEX_HEADER:   \usepackage{libertine, microtype, graphicx, float}
+#+LATEX_HEADER:   \usepackage[USenglish]{babel}
+#+LATEX_HEADER:   \usepackage[scaled=0.9]{inconsolata}
+#+LATEX_HEADER:   \usepackage[libertine]{newtxmath}
+#+LATEX_HEADER:    \usepackage[version=2]{mhchem}
+
+#+LATEX_HEADER:   \setkomafont{captionlabel}{\sffamily\bfseries}
+#+LATEX_HEADER:   \setcapindent{0em}  \setkomafont{caption}{\small}
+#+LATEX_HEADER:   \usepackage[basicstyle=small]{listings}
+
+# date   2019-12-03 (YYYY-MM-DD)
+# edit:  2019-12-04 (YYYY-MM-DD)
+
+
+* Background
+
+  On his web page, Kenneth Moreland suggests a number of continuous
+  and diverge color palettes to improve scientific
+  visualization.[fn:1] Contrasting to other approaches, they aim for a
+  smooth variation of the hue between the extremes of a scale
+  displayed.  While this reduces the brightness of the colors to
+  choose from, their continuous transient hue offers a better visual
+  inspection already when print in color.  Contrasting to classical
+  "jet" or "rainbow" palettes (/vide infra/), they retain their
+  information if the output is constrained to gray scale (e.g., if
+  xeroxed).
+  
+  #+NAME:        appetizer
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./doc/appetizer.png]]
+
+  Where possible, this project renders Kenneth Moreland's set of
+  =.cvs= palette information accessible to gnuplot as =.plt= files.
+
+* How to use the .plt palettes
+
+  The color palettes are provided with a varying number of explicitly
+  defined colors.  This range spans from eight up to 1024.  For
+  smaller color palettes, a copy-paste of their content into an
+  already existing gnuplot script file may be an option.  More
+  convenient however, especially while working with larger color
+  palettes, is to access them from gnuplot by adding the command
+  #+BEGIN_SRC shell
+    load "example_palette.plt"
+  #+END_SRC
+  at any point prior to the =[s]plot= instruction.
+
+  Each sub-folder contains the corresponding =.plt= files.  The number
+  in the file name indicates the number of explicitly defined colors
+  in the file.
+
+* Palettes at disposition
+
+  For the displays in this section, using the Bessel function $f(x,y)
+  = x^2 + y^2$, for each palette type the synthetic data are plot
+  using the highest number of explicitly defined colors per palette
+  file available ($n = 1024$).  Next to it, a diagram depicts how the
+  =R=, =G=, and =B= channel sum up to yield the =RGB= color displayed.
+  In addition, the NTSC luminance value is traced.  This is indicative
+  about how the calculated result would look like for an output
+  constrained to gray-scale.  Thirdly you see the Bessel plot a twice,
+  actually simulating the gray-scale output.
+
+  At present, conversions of eight color palettes are provided:
+  black-body, extended-black-body, kindlmann, extended-kindlmann,
+  magma, plasma, and viridis are palettes designed for the display of
+  continuous data sets.
+
+  On the other hand, palette bent-cool-warm is designed with diverge
+  data sets in mind where highlighting the transition across a
+  critical value is important.  This may be useful to indicate
+  relative velocities, or pressures below / above a threshold, for
+  example.
+
+  #+NAME:       Moreland_black_body_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "black-body" displaying the Bessel function $f(x,y) = x^2 + y^2$.  This and the plots following are based on the explicit gnuplot instruction =set sample 2024= and =set isosample 1024= to accommodate up to 1024 colors explicitly defined in the palettes used.
+  #+ATTR_LATEX: :width 15cm   
+  #+ATTR_HTML:  :width 75%
+  [[./black-body/black-body-table-float-1024_test.png]]
+
+  #+NAME:       Moreland_extended_black_body_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "extended-black-body" applied to display the the same function.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./extended-black-body/extended-black-body-table-float-1024_test.png]]
+
+  #+NAME:       Moreland_kindlman_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "kindlmann" applied to display the same function.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./kindlmann/kindlmann-table-float-1024_test.png]]
+
+  #+NAME:       Moreland_extended_kindlman_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "extended-kindlmann" applied to display the same function.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./extended-kindlmann/extended-kindlmann-table-float-1024_test.png]]
+  
+  #+NAME:       Moreland_magma_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "magma" applied to display the same function.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./magma/magma-table-float-1024_test.png]]
+  
+  #+NAME:       Moreland_plasma_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "plasma" applied to display the same function.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./plasma/plasma-table-float-1024_test.png]]
+
+  #+NAME:       Moreland_viridis_1024
+  #+CAPTION:    Kenneth Moreland's continuous palette "viridis" applied to display the same function.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./viridis/viridis-table-float-1024_test.png]]
+
+  #+NAME:        Moreland_bent_cool_warm_1024
+  #+CAPTION:     Kenneth Moreland's diverging palette "bent-cool-warm", which  accentuates the transient at the center, displaying the Bessel function.
+  #+ATTR_LATEX:  :with 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./bent-cool-warm/bent-cool-warm-table-float-1024_test.png]]
+
+
+* Comparison with other palettes
+  
+  A few color palettes relatively easy to set up and use with gnuplot
+  are shown below for comparison with those provided by Moreland.  The
+  computations of the color plot again explicitly set the high level
+  of iso-levels (=set iso 1024=) and samples (=set samples 500=) in
+  /x/- and /y/-direction.
+
+  Note that there are repositories dedicated to provide of gnuplot
+  palettes (for example, gnuplot-colorbrewer,[fn:2] and
+  gnuplot-palettes[fn:3]) easing to venture out alternatives, too.
+
+  + For the display of continuous data, either one of the following
+    instructions prior to the =[s]plot= instruction may initiate
+    palettes already included in gnuplot:
+    #+BEGIN_SRC shell
+      set palette gray   # gnuplot's gray palette
+      set pm3d map       # access to gnuplot's default rainbow palette
+      set palette cubehelix start 0 cycles -1. saturation 1
+    #+END_SRC
+    Note that palette =cubehelix= equally counters some cases of color
+    blindness, too.
+    
+    #+NAME:     manual_gray_1024
+    #+CAPTION:  Gnuplot's gray palette (=set palette gray=) displaying the Bessel function $f(x,y) = x^2 + y^2$.
+    #+ATTR_LATEX:  :width 15cm
+    #+ATTR_HTML:   :with 75%
+    [[./extra_palette_tests/manual_gray_1024_test.png]]
+
+    #+NAME:     manual_palette_1024
+    #+CAPTION:  Gnuplot's default rainbow palette (=set palette; set pm3d=).
+    #+ATTR_LATEX:  :width 15cm
+    #+ATTR_HTML:   :width 75%
+    [[./extra_palette_tests/manual_palette_1024_test.png]]
+
+    #+NAME:     manual_cubehelix_1024
+    #+CAPTION:  Gnuplot's =cubehelix= palette (=set palette cubehelix start 0 cycles -1. saturation 1=)
+    #+ATTR_LATEX:  :width 15cm
+    #+ATTR_HTML:   :with 75%
+    [[./extra_palette_tests/manual_cubehelix_1024_test.png]]
+
+    As a contrasting example, the =jet.pal= palette (provided by
+    [[https://github.com/Gnuplotting/gnuplot-palettes][gnuplot-palettes)]] mimics an elder matlab default palette with the
+    perceptual problems meanwhile addressed by palettes by Moreland
+    and others.  address.  Its definitions relevant here are:
+    #+BEGIN_SRC shell
+    set palette defined (0  0.0 0.0 0.5, \
+                     1  0.0 0.0 1.0, \
+                     2  0.0 0.5 1.0, \
+                     3  0.0 1.0 1.0, \
+                     4  0.5 1.0 0.5, \
+                     5  1.0 1.0 0.0, \
+                     6  1.0 0.5 0.0, \
+                     7  1.0 0.0 0.0, \
+                     8  0.5 0.0 0.0 )
+    #+END_SRC
+    
+    #+NAME:      manual_jet_1024
+    #+CAPTION:  Display of the same Bessel function with defined with the "jet"  palette.  Note how the ease to assign levels from the reference bar to the map is influenced by the color-space accessed.
+    #+ATTR_LATEX:   :width 15cm
+    #+ATTR_HTML:    :width 75%
+    [[./extra_palette_tests/manual_jet_1024_test.png]]
+
+  + For diverge data, using a blue-white-red transient is a good
+    choice /to begin with/.  For the RGB color space by the pngcairo
+    terminal, these palettes may be defined by 'named colors' as with
+    either of the example instructions below.  Similar as seen with
+    Moreland's palettes, it is helpful to decrease the maximal
+    luminosity, though (second example).
+    #+BEGIN_SRC shell
+      set palette defined (-1 "blue", 0 "white", 1 "red")
+      set palette defined (-1 "blue", 0 "light-gray", 1 "red")
+    #+END_SRC
+    
+    #+NAME:    manual_rainbow_blue_white_red_1024
+    #+CAPTION: Manually set up diverging blue--white-red color palette displaying the Bessel function.
+    #+ATTR_LATEX:  :width 15cm
+    #+ATTR_HTML:   :with 75%
+    [[./extra_palette_tests/manual_blue_white_red_1024_test.png]]
+
+    #+NAME:    manual_rainbow_blue_light-gray_red_1024
+    #+CAPTION: Slightly improved version of the earlier diverging three-level color palette by exchange of "white" by "light-gray" as central transition.
+    #+ATTR_LATEX:  :width 15cm
+    #+ATTR_HTML:   :width 75%
+    [[./extra_palette_tests/manual_blue_light-gray_red_1024_test.png]]
+  
+* Generation of the data
+
+  Departing from Moreland's RGB palettes defined as /floating
+  numbers/, script =csv2plt.py= (sub-folder =tools=) reformatted the
+  entries to five decimals.  Script =RGB_check.py= provided a control
+  if the RGB tuples converted stay within the permitted interval of
+  $[0,1]$.
+
+  Script =palette_decomposition.py= provided a quick channel-wise
+  decomposition of the RGB color space, complemented by the NTSC
+  luminosity.  Each synopsis per =.plt= file displays this result in
+  between the test plots in color and gray-scale.
+
+  Script =bessel_test_center.py= computed the synthetic data of the
+  Bessel function $f(x,y) = x^2 + y^2$ eventually displayed as color
+  plot.  It called ImageMagick to convert this result into gray-scale,
+  and concatenated the two plots with the diagram by
+  =palette_decomposition.py=.
+
+* Comparison of similar palettes
+
+  Gnuplot's rapid scrutiny about the contribution of =R=, =G=, and =B=
+  channel of a palette, reported as =.png=, allows a programmatic
+  visual comparison of palettes with each other.  This task addressed
+  by script =vignette_comparison.py=, to be run right after
+  =palette_decomposition.py=, without provision of parameters from the
+  CLI by
+  #+BEGIN_SRC shell
+    python3 vignette_comparison.py
+  #+END_SRC
+  
+  Each pairwise comparison yields a new file named in the pattern of
+  =diff_fileA_fileB.png=.  Differences identified by ImageMagick will
+  be indicated with bright red pixels.  This reveals, for example,
+  palette =magma.pal= provided by gnuplotting.org[fn:4] /
+  [[https://github.com/Gnuplotting/gnuplot-palettes][gnuplot-palettes]] differs from all =magma.plt= definitions derived
+  from Kenneth Moreland's palettes based on floating numbers in this
+  repository.
+
+  #+NAME:       magma_testing
+  #+CAPTION:    Comparison of two =magma= palettes: Kenneth Moreland's =magma= palette (256 colors, floating RGB definition, left hand side).  Gnuplotting's definition of =magma= (256 colors, floating RGB definition, center).  Difference plot by ImageMagick's =compare= of the two former (right hand).
+  #+ATTR_LATEX: :width 15cm
+  #+ATTR_HTML:  :with 75%
+  [[./extra_palette_tests/magma_testing/synopsis_magma_palettes.png]]
+
+  Sub-folder =extra_palette_tests/magma_testing/= includes further
+  details about this analysis and an animated =.gif= about all tests
+  performed releveant here.  This and all other data processing was
+  run under Linux (Xubuntu 18.04.3 LTS) with CPython (3.6.8) and
+  ImageMagick (6.9.7-4).
+
+  #+LATEX:  \begin{center} $\diamond{}$ \end{center}
+
+* Footnotes
+[fn:1] http://www.kennethmoreland.com/color-advice/
+[fn:2] https://github.com/aschn/gnuplot-colorbrewer
+[fn:3] https://github.com/Gnuplotting/gnuplot-palettes
+[fn:4] http://www.gnuplotting.org/
+
+  
