@@ -1,0 +1,35 @@
+
+# name:    .gitattributes
+# author:  nbehrnd@yahoo.com
+# date:    2019-12-04 (YYYY-MM-DD)
+# edit:
+
+# To work more efficiently within this project which will contain quite
+# some of binary data (e.g., .png images), this .gitattributes file was
+# set up.  It follows the outline provided by Muhammad Rehan Saeed which
+# was published by him on his blog
+#
+# https://rehansaeed.com/gitattributes-best-practices/
+#
+# so the credit mostly belongs to him.
+
+# Set default behavior to automatically normalize line endings:
+* text=auto
+
+# Force bash scripts to always use lf line endings so that if a repo is
+# access in Unix via file share from Windows, the scripts will work.
+*.sh text eol = lf
+
+# Documents
+*.pdf filter=lfs  diff=lfs  merge=lfs -text
+
+# Images
+*.gif filter=lfs  diff=lfs  merge=lfs -text
+*.png filter=lfs  diff=lfs  merge=lfs -text
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.jpg binary
+*.gif binary
+
+# END
