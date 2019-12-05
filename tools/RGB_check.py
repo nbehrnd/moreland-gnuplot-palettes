@@ -54,7 +54,7 @@ def file_probing():
                 try:
                     number = float(str(element))
                     tuple_register.append(number)
-                except IOError:
+                except:
                     pass
 
         for number in tuple_register:
