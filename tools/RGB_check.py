@@ -5,7 +5,6 @@
 # license: MIT
 # date:    2019-11-27 (YYYY-MM-DD)
 # edit:    2019-12-05 (YYYY-MM-DD)
-
 """ Probe Kenneth Moreland's palettes for keeping RGB in range [0...1]
 
 After conversion into .plt, some of Kenneth Moreland's diverging color
@@ -32,7 +31,7 @@ def file_identification():
     global register
     register = []
     for file in os.listdir("."):
-        if fnmatch.fnmatch(file, "*float*.csv"):
+        if fnmatch.fnmatch(file, "*float*.plt"):
             register.append(file)
     register.sort()
 
@@ -40,21 +39,27 @@ def file_identification():
 def file_probing():
     """ Check the files for the presence of RGB greater than 1. """
     for entry in register:
-        file_content = []
-
+        per_file_register = []
         with open(entry, mode="r") as source:
             for line in source:
-                per_line = str(line.strip()).split(",")
-                for element in per_line:
-                    try:
-                        number = float(str(element))
-                        file_content.append(number)
-                    except:  # Probably the header.
-                        pass
+                if (len(line) > 1) and (str("#") not in line):
+                    per_file_register.append(str(line).strip())
 
-        for number in file_content:
+        del per_file_register[0]  # to remove 'set palette defined(\'
+
+        tuple_register = []
+        for tuple_xyz in per_file_register:
+            per_line = str(tuple_xyz).split(" ")
+            for element in per_line:
+                try:
+                    number = float(str(element))
+                    tuple_register.append(number)
+                except IOError:
+                    pass
+
+        for number in tuple_register:
             if number > 1:
-                print("Check {}".format(entry))
+                print("Check file {}.".format(entry))
                 break
 
 
