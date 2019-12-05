@@ -4,7 +4,7 @@
 # author:  nbehrnd@yahoo.com
 # license: MIT
 # date:    2019-11-27 (YYYY-MM-DD)
-# edit:    2019-12-02 (YYYY-MM-DD)
+# edit:    2019-12-05 (YYYY-MM-DD)
 
 """ Probe Kenneth Moreland's palettes for keeping RGB in range [0...1]
 
@@ -32,7 +32,7 @@ def file_identification():
     global register
     register = []
     for file in os.listdir("."):
-        if fnmatch.fnmatch(file, "*float*.csv"):
+        if fnmatch.fnmatch(file, "*float*.plt"):
             register.append(file)
     register.sort()
 
