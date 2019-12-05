@@ -14,7 +14,7 @@
 #+LATEX_HEADER:   \usepackage[basicstyle=small]{listings}
 
 # date   2019-12-03 (YYYY-MM-DD)
-# edit:  2019-12-04 (YYYY-MM-DD)
+# edit:  2019-12-05 (YYYY-MM-DD)
 
 
 * Background
@@ -261,8 +261,9 @@
   Sub-folder =extra_palette_tests/magma_testing/= includes further
   details about this analysis and an animated =.gif= about all tests
   performed releveant here.  This and all other data processing was
-  run under Linux (Xubuntu 18.04.3 LTS) with CPython (3.6.8) and
-  ImageMagick (6.9.7-4).
+  run under Linux (Xubuntu 18.04.3 LTS) with CPython (3.6.8,
+  October 7, 2019), gnuplot (5.2.7beta, last modified 2019-05-14), and
+  ImageMagick (6.9.7-4 Q16).
 
   #+LATEX:  \begin{center} $\diamond{}$ \end{center}
 
