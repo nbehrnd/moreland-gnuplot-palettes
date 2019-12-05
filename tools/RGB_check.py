@@ -32,7 +32,7 @@ def file_identification():
     global register
     register = []
     for file in os.listdir("."):
-        if fnmatch.fnmatch(file, "*float*.plt"):
+        if fnmatch.fnmatch(file, "*float*.csv"):
             register.append(file)
     register.sort()
 
