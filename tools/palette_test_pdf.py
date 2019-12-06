@@ -78,7 +78,7 @@ def palette_decomposition():
     print("Querring the channel contributions per palette.")
 
     for entry in plt_register:
-        retain = str(entry)[:-4] + str(".pdf")
+        retain = str(entry)[:-4] + str("_vig.pdf")
         g = gp.Gnuplot(persist=0)
 
         g('set output "{}"'.format(retain))
