@@ -8,11 +8,17 @@
 #
 """ Test the already converted Moreland palettes for gnuplot's pdfcairo
 
-    This script asssumes the Moreland palettes of RGB provided as
-    floating numbers already converted successfully with csv2plt.py.  It
-    tests how these interact with gnuplot's pdfcairo terminal generating
-    resolution independent .pdf files.  This is complementary to calling
-    the pngcairo terminal offering bitmap .png files.
+    This script assumes the Moreland palettes of RGB provided as floating
+    numbers already converted successfully with csv2plt.py.  It tests how
+    these interact with gnuplot's pdfcairo terminal generating resolution
+    independent .pdf files.  This is complementary to calling the pngcairo
+    terminal offering bitmap .png files.  Note that the number of colors
+    displayed by gnuplot was restricted to 256 (see 'set iso 256' command,
+    line #121) -- considerably less than in the script probing the a .png
+    export all up to 1024 colors the Moreland palettes may offer.  Probing
+    with 512 or 1024 isolines will yield considerably larger .pdf files
+    and equally take longer, both which might not be needed for an initial
+    survey.
 
     To work properly, put this script in the same folder as the converted
     palette .plt files.  Ensure you installed third-party CPython module
@@ -34,20 +40,20 @@
 
       It equally is deposit in the repositories of e.g., Xubuntu 18.04.
       Contrasting to a montage with ImageMagick, the intermediate .pdf
-      output generated still is a true, freely scalable fvector file,
+      output generated still is a true, freely scalable vector file,
       including for example a searchable text layer and may be processed
       for example in inkscape, too.
 
     + pdfcrop
       The concatenation provided by pdfjam will fill only a part of the
-      page (e.g., ISO A4, or letter, in potrait orientation) with a large
+      page (e.g., ISO A4, or letter, in portrait orientation) with a large
       white frame.  pdfcrop by Heiko Oberdiek will be called to trim this
       white space off.  This CLI-only program was developed in context of
       the LaTeX project and hence available e.g. on www.ctan.org, or in
       Linux GUI installations like Xubuntu.
 
     The script was written and used successfully on Xubuntu 18.04.3 with
-    CPython 3.6.8, gnuplot (5.2.7beta) and Gnuplot.py (1.8); auxilliary
+    CPython 3.6.8, gnuplot (5.2.7beta) and Gnuplot.py (1.8); auxiliary
     ghostscript 9.26, pdfjam 2.08, and pdfcrop 1.38. """
 
 import fnmatch
@@ -75,9 +81,10 @@ def plt_identification():
 
 def palette_decomposition():
     """ Display the contributions of R, G, B in RGB and Y in NTSC. """
-    print("Querring the channel contributions per palette.")
+    print("Querying the channel contributions per palette.")
 
     for entry in plt_register:
+        print("Work on {}.".format(entry))
         retain = str(entry)[:-4] + str("_vig.pdf")
         g = gp.Gnuplot(persist=0)
 
@@ -86,9 +93,110 @@ def palette_decomposition():
 
         g('load "{}"'.format(entry))
         g('test palette')
+    print("Channel contributions assigned.")
+
+
+def color_plot():
+    """ Plot the synthetic Bessel data with the .plt to probe. """
+    print("\nGeneration of the (color) plots of .plt to probe.")
+
+    for entry in plt_register:
+        print("Work on {}.".format(entry))
+        g = gp.Gnuplot(persist=0)
+
+        g('input = "{}"'.format(entry))
+        g('len_root = strlen(input) - 4')
+        g('root = substr(input, 1, len_root)')
+        g('output_file = root . "_c.pdf"')
+        g('set output(output_file)')
+
+        g('set terminal pdfcairo size 6cm,6cm font "Arial,8" enha lw 1')
+        g('set grid lw 0.5; set size square')
+        g('unset key')
+
+        g('set label root at graph 0.50,0.95 center front')
+        g('load "{}"'.format(entry))
+        g('set pm3d map')
+
+        g('set iso 256')  # Note: A palette may contain up to 1024 colors.
+        g('set sample 500')  # Incremental compute in 0.02 units/x and y.
+        g('set xrange [-5:5]; set yrange [-5:5]')
+        g('set cbrange[-1:1]')
+
+        # plot the Bessel function f(x,y) = x^2 + y^2
+        g('splot besj0(x**2 + y**2) with pm3d')
+
+
+def gray_scale_conversion():
+    """ Convert the Bessel plot into a gray scale representation. """
+    print("\nConversion of color Bessel plots into gray scale plots.")
+
+    for entry in plt_register:
+        to_convert = str(entry)[:-4] + str("_c.pdf")
+        retain = str(entry)[:-4] + str("_bw.pdf")
+        print("\nColor conversion of {}.".format(to_convert))
+
+        # credit to Thomas Reuben on
+        # https://stackoverflow.com/questions/20128656/how-to-convert-a-pdf-to-grayscale-from-command-line-avoiding-to-be-rasterized
+        conversion = str("gs -sDEVICE=pdfwrite \
+            -dProcessColorModel=/DeviceGray \
+            -dColorConversionStrategy=/Gray \
+            -dPDFUseOldCMS=false -o {} -f {}".format(retain, to_convert))
+        try:
+            sub.call(conversion, shell=True)
+        except IOError:
+            print("Problem accessing ghostscript.  Exit.")
+            sys.exit(0)
+
+
+def plot_concatenation():
+    """ Join color plot, vignette, and gray-scaled color plot. """
+    print("Joining the plots per .plt file.")
+
+    for entry in plt_register:
+        color_plot = str(entry)[:-4] + str("_c.pdf")
+        gray_plot = str(entry)[:-4] + str("_bw.pdf")
+        vignette = str(entry)[:-4] + str("_vig.pdf")
+        intermediate = str(entry)[:-4] + str("_intermediate.pdf")
+        retain = str(entry)[:-4] + str("_test.pdf")
+
+        print("\nJoining .pdf for {}.".format(retain))
+
+        join_pdf = str("pdfjam --nup '3x1' {} {} {} --outfile {}".format(
+            color_plot, vignette, gray_plot, intermediate))
+
+        paper_trim = str("pdfcrop --margins 10 {} {}".format(
+            intermediate, retain))
+
+        try:
+            sub.call(join_pdf, shell=True)
+        except IOError:
+            print("Error to concatenate {}.  Exit.".format(retain))
+        # Since concatenated, no longer needed .pdf are shred.
+        try:
+            os.remove(color_plot)
+            os.remove(gray_plot)
+            os.remove(vignette)
+        except:
+            pass
+
+        try:
+            sub.call(paper_trim, shell=True)
+        except IOError:
+            print("Error removing excess white in {}.".format(retain))
+        # Since cropped, no longer full-page display is removed
+        try:
+            os.remove(intermediate)
+        except:
+            pass
+
+    print("\nConcatenation of .pdf files complete.  Regular exit.")
 
 
 # action calls:
 plt_identification()
 palette_decomposition()
+color_plot()
+gray_scale_conversion()
+plot_concatenation()
 sys.exit(0)
