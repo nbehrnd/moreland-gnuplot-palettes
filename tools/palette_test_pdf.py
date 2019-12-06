@@ -73,6 +73,22 @@ def plt_identification():
     plt_register.sort()
 
 
+def palette_decomposition():
+    """ Display the contributions of R, G, B in RGB and Y in NTSC. """
+    print("Querring the channel contributions per palette.")
+
+    for entry in plt_register:
+        retain = str(entry)[:-4] + str(".pdf")
+        g = gp.Gnuplot(persist=0)
+
+        g('set output "{}"'.format(retain))
+        g('set terminal pdfcairo')
+
+        g('load "{}"'.format(entry))
+        g('test palette')
+
+
 # action calls:
 plt_identification()
+palette_decomposition()
 sys.exit(0)
