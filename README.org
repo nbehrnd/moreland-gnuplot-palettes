@@ -14,7 +14,7 @@
 #+LATEX_HEADER:   \usepackage[basicstyle=small]{listings}
 
 # date   2019-12-03 (YYYY-MM-DD)
-# edit:  2019-12-05 (YYYY-MM-DD)
+# edit:  2019-12-06 (YYYY-MM-DD)
 
 
 * Background
@@ -264,6 +264,23 @@
   run under Linux (Xubuntu 18.04.3 LTS) with CPython (3.6.8,
   October 7, 2019), gnuplot (5.2.7beta, last modified 2019-05-14), and
   ImageMagick (6.9.7-4 Q16).
+
+* Vector-based export
+
+  It is possible to engage gnuplot's =set terminal pdfcairo=
+  instruction to provide a native export of the results as the
+  resolution independent =.pdf= format.  This was tested for the
+  palette maps of 512 explicitly defined colors with now 256 iso
+  samples computed by gnuplot for the same Bessel function.  While
+  this document contains only the example for the continously smooth
+  virididis palette, tests with this and the other palettes are stored
+  in sub-folder =pdf-tests=.
+
+  #+NAME:    viridis_pdf_test
+  #+CAPTION: Test of Kenneth Moreland's RGB definition of palette viridis-table-float-0512 with gnuplot's =set terminal pdfcairo= instruction and 256 isosamples.
+  #+ATTR_LATEX: :witdh 15cm
+  #+ATTR_HTML:  :width 75%
+  [[./pdf_tests/viridis-table-float-0512_test.pdf]]
 
   #+LATEX:  \begin{center} $\diamond{}$ \end{center}
 
