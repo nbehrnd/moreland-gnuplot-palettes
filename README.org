@@ -14,7 +14,7 @@
 #+LATEX_HEADER:   \usepackage[basicstyle=small]{listings}
 
 # date   2019-12-03 (YYYY-MM-DD)
-# edit:  2019-12-06 (YYYY-MM-DD)
+# edit:  2019-12-10 (YYYY-MM-DD)
 
 
 * Background
@@ -57,87 +57,103 @@
 
 * Palettes at disposition
 
-  For the displays in this section, using the Bessel function $f(x,y)
-  = x^2 + y^2$, for each palette type the synthetic data are plot
-  using the highest number of explicitly defined colors per palette
-  file available ($n = 1024$).  Next to it, a diagram depicts how the
-  =R=, =G=, and =B= channel sum up to yield the =RGB= color displayed.
-  In addition, the NTSC luminance value is traced.  This is indicative
-  about how the calculated result would look like for an output
-  constrained to gray-scale.  Thirdly you see the Bessel plot a twice,
-  actually simulating the gray-scale output.
+  For the display of continuous data, conversions of eight color
+  palettes are provided: =black-body=, =extended-black-body=,
+  =inferno=, =kindlmann=, =extended-kindlmann=, =magma=, =plasma=, and
+  =viridis=.
 
-  At present, conversions of eight color palettes are provided:
-  black-body, extended-black-body, kindlmann, extended-kindlmann,
-  magma, plasma, and viridis are palettes designed for the display of
-  continuous data sets.
-
-  On the other hand, palette bent-cool-warm is designed with diverge
+  On the other hand, palette =bent-cool-warm= is designed with diverge
   data sets in mind where highlighting the transition across a
   critical value is important.  This may be useful to indicate
   relative velocities, or pressures below / above a threshold, for
-  example.
+  example.  It is complemented by =smooth-cool-warm=.  While again
+  designed as diverging palette, the transition around the mid point
+  now is gradual.  Thus, for data close at this transition, expect
+  less detail displayed there with with palette =smooth-cool-warm= ,
+  than with palette =bent-cool-warm=. \\ 
+
+  The display of the palette's action is based on synthetic data
+  computed for the Bessel function $f(x,y) = x^2 + y^2$ with a grid of
+  500 \times 500 points in the (/x,y/)-plane.  1024 levels in the
+  orthogonal /z/-direction accommodate the highest number of
+  explicitly defined colors per palette file available ($n = 1024$).
+  Next to it, a diagram depicts how the =R=, =G=, and =B= channel sum
+  up to yield the =RGB= color displayed.  In addition, the NTSC
+  luminance value is traced.  This is indicative about how the
+  calculated result would look like for an output constrained to
+  gray-scale.  Thirdly you see the Bessel plot a twice, actually
+  simulating the gray-scale output.
 
   #+NAME:       Moreland_black_body_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "black-body" displaying the Bessel function $f(x,y) = x^2 + y^2$.  This and the plots following are based on the explicit gnuplot instruction =set sample 2024= and =set isosample 1024= to accommodate up to 1024 colors explicitly defined in the palettes used.
+  #+CAPTION:    Kenneth Moreland's continuous palette =black-body= used to display the Bessel function $f(x,y) = x^2 + y^2$.  This and the plots following are based on the explicit gnuplot instructions =set sample 500= and =set isosample 1024= to accommodate up to 1024 colors explicitly defined in the palettes.
   #+ATTR_LATEX: :width 15cm   
   #+ATTR_HTML:  :width 75%
   [[./black-body/black-body-table-float-1024_test.png]]
 
   #+NAME:       Moreland_extended_black_body_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "extended-black-body" applied to display the the same function.
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =extended-black-body=.
   #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./extended-black-body/extended-black-body-table-float-1024_test.png]]
 
-  #+NAME:       Moreland_kindlman_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "kindlmann" applied to display the same function.
+  #+NAME:       Moreland_inferno_1024
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =inferno=.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./inferno/inferno-table-float-1024_test.png]]
+
+  #+NAME:       Moreland_kindlmann_1024
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =kindlmann=.
   #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./kindlmann/kindlmann-table-float-1024_test.png]]
 
-  #+NAME:       Moreland_extended_kindlman_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "extended-kindlmann" applied to display the same function.
+  #+NAME:       Moreland_extended_kindlmann_1024
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =extended-kindlmann=.
   #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./extended-kindlmann/extended-kindlmann-table-float-1024_test.png]]
   
   #+NAME:       Moreland_magma_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "magma" applied to display the same function.
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =magma=.
   #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./magma/magma-table-float-1024_test.png]]
   
   #+NAME:       Moreland_plasma_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "plasma" applied to display the same function.
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =plasma=.
   #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./plasma/plasma-table-float-1024_test.png]]
 
   #+NAME:       Moreland_viridis_1024
-  #+CAPTION:    Kenneth Moreland's continuous palette "viridis" applied to display the same function.
+  #+CAPTION:    Application of Kenneth Moreland's continuous palette =viridis=.
   #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./viridis/viridis-table-float-1024_test.png]]
 
   #+NAME:        Moreland_bent_cool_warm_1024
-  #+CAPTION:     Kenneth Moreland's diverging palette "bent-cool-warm", which  accentuates the transient at the center, displaying the Bessel function.
-  #+ATTR_LATEX:  :with 15cm
+  #+CAPTION:     Application of Kenneth Moreland's diverging palette =bent-cool-warm=, which accentuates the mid-point.
+  #+ATTR_LATEX:  :width 15cm
   #+ATTR_HTML:   :width 75%
   [[./bent-cool-warm/bent-cool-warm-table-float-1024_test.png]]
 
+  #+NAME:        Moreland_smooth_cool_warm_1024
+  #+CAPTION:     Application of Kenneth Moreland's diverging palette =smooth-cool-warm=.
+  #+ATTR_LATEX:  :width 15cm
+  #+ATTR_HTML:   :width 75%
+  [[./smooth-cool-warm/smooth-cool-warm-table-float-1024_test.png]]
+
+  #+LATEX:  \clearpage{}
 
 * Comparison with other palettes
   
-  A few color palettes relatively easy to set up and use with gnuplot
-  are shown below for comparison with those provided by Moreland.  The
-  computations of the color plot again explicitly set the high level
-  of iso-levels (=set iso 1024=) and samples (=set samples 500=) in
-  /x/- and /y/-direction.
+  A few palettes are compared to those provided by Moreland.  They
+  again rely on the high level of isosamples (=set iso 1024=) in /z/-,
+  and samples (=set samples 500=) in /x/- and /y/-direction.
 
-  Note that there are repositories dedicated to provide of gnuplot
-  palettes (for example, gnuplot-colorbrewer,[fn:2] and
-  gnuplot-palettes[fn:3]) easing to venture out alternatives, too.
+  Repositories like gnuplot-colorbrewer,[fn:2] and
+  gnuplot-palettes[fn:3] host alternative palettes, too.
 
   + For the display of continuous data, either one of the following
     instructions prior to the =[s]plot= instruction may initiate
@@ -153,7 +169,7 @@
     #+NAME:     manual_gray_1024
     #+CAPTION:  Gnuplot's gray palette (=set palette gray=) displaying the Bessel function $f(x,y) = x^2 + y^2$.
     #+ATTR_LATEX:  :width 15cm
-    #+ATTR_HTML:   :with 75%
+    #+ATTR_HTML:   :width 75%
     [[./extra_palette_tests/manual_gray_1024_test.png]]
 
     #+NAME:     manual_palette_1024
@@ -165,13 +181,15 @@
     #+NAME:     manual_cubehelix_1024
     #+CAPTION:  Gnuplot's =cubehelix= palette (=set palette cubehelix start 0 cycles -1. saturation 1=)
     #+ATTR_LATEX:  :width 15cm
-    #+ATTR_HTML:   :with 75%
+    #+ATTR_HTML:   :width 75%
     [[./extra_palette_tests/manual_cubehelix_1024_test.png]]
 
-    As a contrasting example, the =jet.pal= palette (provided by
-    [[https://github.com/Gnuplotting/gnuplot-palettes][gnuplot-palettes)]] mimics an elder matlab default palette with the
-    perceptual problems meanwhile addressed by palettes by Moreland
-    and others.  address.  Its definitions relevant here are:
+    #+LATEX:  \clearpage{}
+
+    As a contrasting example, =jet.pal= (provided by [[https://github.com/Gnuplotting/gnuplot-palettes][gnuplot-palettes]])
+    mimics an elder matlab default palette with the perceptual
+    problems meanwhile addressed by palettes by Moreland and others.
+    address.  Its definitions relevant here are:
     #+BEGIN_SRC shell
     set palette defined (0  0.0 0.0 0.5, \
                      1  0.0 0.0 1.0, \
@@ -185,7 +203,7 @@
     #+END_SRC
     
     #+NAME:      manual_jet_1024
-    #+CAPTION:  Display of the same Bessel function with defined with the "jet"  palette.  Note how the ease to assign levels from the reference bar to the map is influenced by the color-space accessed.
+    #+CAPTION:  Display of the same Bessel function with defined with the external =jet.pal= palette from gnuplotting.org's repository.  Note how the ease to assign levels from the reference bar to the map is depends on the color-space accessed.
     #+ATTR_LATEX:   :width 15cm
     #+ATTR_HTML:    :width 75%
     [[./extra_palette_tests/manual_jet_1024_test.png]]
@@ -204,7 +222,7 @@
     #+NAME:    manual_rainbow_blue_white_red_1024
     #+CAPTION: Manually set up diverging blue--white-red color palette displaying the Bessel function.
     #+ATTR_LATEX:  :width 15cm
-    #+ATTR_HTML:   :with 75%
+    #+ATTR_HTML:   :width 75%
     [[./extra_palette_tests/manual_blue_white_red_1024_test.png]]
 
     #+NAME:    manual_rainbow_blue_light-gray_red_1024
@@ -250,17 +268,18 @@
   palette =magma.pal= provided by gnuplotting.org[fn:4] /
   [[https://github.com/Gnuplotting/gnuplot-palettes][gnuplot-palettes]] differs from all =magma.plt= definitions derived
   from Kenneth Moreland's palettes based on floating numbers in this
-  repository.
+  repository as illustrated below, or with animation =magma_diff.gif=
+  (in sub-folder =extra_palette_tests=).
 
   #+NAME:       magma_testing
   #+CAPTION:    Comparison of two =magma= palettes: Kenneth Moreland's =magma= palette (256 colors, floating RGB definition, left hand side).  Gnuplotting's definition of =magma= (256 colors, floating RGB definition, center).  Difference plot by ImageMagick's =compare= of the two former (right hand).
   #+ATTR_LATEX: :width 15cm
-  #+ATTR_HTML:  :with 75%
+  #+ATTR_HTML:  :width 75%
   [[./extra_palette_tests/magma_testing/synopsis_magma_palettes.png]]
 
   Sub-folder =extra_palette_tests/magma_testing/= includes further
   details about this analysis and an animated =.gif= about all tests
-  performed releveant here.  This and all other data processing was
+  performed relevant here.  This and all other data processing was
   run under Linux (Xubuntu 18.04.3 LTS) with CPython (3.6.8,
   October 7, 2019), gnuplot (5.2.7beta, last modified 2019-05-14), and
   ImageMagick (6.9.7-4 Q16).
@@ -272,13 +291,13 @@
   resolution independent =.pdf= format.  This was tested for the
   palette maps of 512 explicitly defined colors with now 256 iso
   samples computed by gnuplot for the same Bessel function.  While
-  this document contains only the example for the continously smooth
-  virididis palette, tests with this and the other palettes are stored
+  this document contains only the example for the continuously smooth
+  viridis palette, tests with this and the other palettes are stored
   in sub-folder =pdf-tests=.
 
   #+NAME:    viridis_pdf_test
-  #+CAPTION: Test of Kenneth Moreland's RGB definition of palette viridis-table-float-0512 with gnuplot's =set terminal pdfcairo= instruction and 256 isosamples.
-  #+ATTR_LATEX: :witdh 15cm
+  #+CAPTION: Test of Kenneth Moreland's RGB definition of palette =viridis-table-float-0512= with gnuplot's =set terminal pdfcairo= instruction and 256 isosamples.
+  #+ATTR_LATEX: :width 15cm
   #+ATTR_HTML:  :width 75%
   [[./pdf_tests/viridis-table-float-0512_test.pdf]]
 
